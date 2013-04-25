@@ -1,0 +1,16 @@
+
+div.step > div {
+    display: inline-block;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+}
+
+div.step .response {
+    display: none;
+}
+
+pre {
+    margin: 0;
+}
+

@@ -1,0 +1,72 @@
+Welcome to Coq 8.4pl1 (January 2013)
+Fixpoint double (n:nat) :=
+  match n with
+  | O => O
+  | S n' => S (S (double n'))
+  end.
+double is recursively defined (decreasing on 1st argument)
+Lemma double_plus : forall n, double n = n + n .
+1 subgoal
+  
+  ============================
+   forall n : nat, double n = n + n
+Proof.
+1 subgoal
+  
+  ============================
+   forall n : nat, double n = n + n
+intros n.
+1 subgoal
+  
+  n : nat
+  ============================
+   double n = n + n
+induction n as [| n'].
+2 subgoals
+  
+  ============================
+   double 0 = 0 + 0
+
+subgoal 2 is:
+ double (S n') = S n' + S n'simpl.
+2 subgoals
+  
+  ============================
+   0 = 0
+
+subgoal 2 is:
+ double (S n') = S n' + S n'reflexivity.
+1 subgoal
+  
+  n' : nat
+  IHn' : double n' = n' + n'
+  ============================
+   double (S n') = S n' + S n'
+simpl.
+1 subgoal
+  
+  n' : nat
+  IHn' : double n' = n' + n'
+  ============================
+   S (S (double n')) = S (n' + S n')
+rewrite -> IHn'.
+1 subgoal
+  
+  n' : nat
+  IHn' : double n' = n' + n'
+  ============================
+   S (S (n' + n')) = S (n' + S n')
+rewrite <- plus_n_Sm.
+1 subgoal
+  
+  n' : nat
+  IHn' : double n' = n' + n'
+  ============================
+   S (S (n' + n')) = S (S (n' + n'))
+reflexivity.
+No more subgoals.Qed.
+
+
+double_plus is defined
+
+User interrupt.
